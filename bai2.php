@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Danh sách thành phố</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 2 Action</title>
 </head>
+
 <body>
+  <h1>Thông tin đã nhận được</h1>
+  <?php
+  if (isset($_SERVER["REQUEST_METHOD"]) == "POST") {
+    $countryList = [
+      "hanoi" => "Hà Nội",
+      "hochiminh" => "Hồ Chí Minh",
+      "vungtau" => "Vũng Tàu",
+    ];
 
-<?php
+    $gioiTinh = $_REQUEST["gioiTinh"] === "male" ? "Nam" : "Nữ";
+    $country = $countryList[$_REQUEST["country"]];
+    $programming_languages = implode(", ", $_REQUEST["programming_languages"]);
 
-$cities = ["Tokyo", "Mexico City", "New York City", "Mumbai", "Seoul", "Shanghai", "Lagos", "Buenos Aires", "Cairo", "London"];
+    $result = "
+      <div>
+        <p>MSSV: {$_REQUEST["mssv"]}</p>
+        <p>Họ tên: {$_REQUEST["fullName"]}</p>
+        <p>Giới tính: {$gioiTinh}</p>
+        <p>Ngôn ngữ lập trình: {$programming_languages}</p>
+        <p>Thành phố: {$country}</p>
+        <p>Tin nhắn: {$_REQUEST["message"]}</p>
+      </div>
+    ";
 
-
-echo "<h2>Các thành phố (ngăn cách bởi dấu phẩy):</h2>";
-echo implode(", ", $cities);
-
-sort($cities);
-echo "<h2>Danh sách thành phố đã sắp xếp:</h2>";
-echo "<ul>";
-foreach ($cities as $city) {
-    echo "<li>$city</li>";
-}
-echo "</ul>";
-
-
-array_push($cities, "Los Angeles", "Calcutta", "Osaka", "Beijing");
-sort($cities);
-
-echo "<h2>Danh sách sau khi thêm và sắp xếp lại:</h2>";
-echo "<ul>";
-foreach ($cities as $city) {
-    echo "<li>$city</li>";
-}
-echo "</ul>";
-?>
-
+    echo $result;
+  }
+  ?>
 </body>
+
 </html>

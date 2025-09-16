@@ -1,44 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Bàn cờ PHP</title>
-    <style>
-        .board {
-            display: grid;
-            grid-template-columns: repeat(8, 50px);
-            grid-template-rows: repeat(8, 50px);
-            border: 2px solid black;
-            width: 400px;
-            height: 400px;
-        }
-
-        .square {
-            width: 50px;
-            height: 50px;
-        }
-
-        .black {
-            background-color: black;
-        }
-
-        .white {
-            background-color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 4 action</title>
 </head>
-<body>
 
-<div class="board">
-    <?php
-    for ($row = 0; $row < 8; $row++) {
-        for ($col = 0; $col < 8; $col++) {
-            $color = ($row + $col) % 2 === 0 ? 'white' : 'black';
-            echo "<div class='square $color'></div>";
-        }
-    }
-    ?>
-</div>
+<body>
+  <?php
+  if (isset($_SERVER["REQUEST_METHOD"]) == "POST") {
+    $numberOne = $_POST["numberOne"];
+    $numberTwo = $_POST["numberTwo"];
+    $operator = $_POST["operator"];
+
+    $operator_symbol = [
+      "add" => "+",
+      "subtract" => "-",
+      "multiply" => "*",
+      "divide" => "/",
+    ];
+
+    $calculator = [
+      "add" => $numberOne + $numberTwo,
+      "subtract" => $numberOne - $numberTwo,
+      "multiply" => $numberOne * $numberTwo,
+      "divide" => $numberOne / $numberTwo,
+    ];
+
+    $result = "{$numberOne}{$operator_symbol[$operator]}{$numberTwo}={$calculator[$operator]}.";
+
+    echo $result;
+  }
+  ?>
 
 </body>
+
 </html>
