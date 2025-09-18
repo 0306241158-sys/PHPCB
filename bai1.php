@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
 <body>
- 
-    <?php
-    $arr=array("rain", "sunshine", "clouds", "hail", "sleet", "snow", "wind");
-    echo "We've seen all kinds of weather this month. At the beginning of the month, we had" .$arr[5]."and".$arr[6].". Then came ".$arr[1]."with a few".$arr[2]."and some".$arr[0].". At least we didn't get any ".$arr[3]."or".$arr[4].".";
-    ?>
+    <form action="home.php" method="post">
+        <h1>Thêm Mới Quản Trị Viên</h1>
+<div>
+    <p>Tên Đăng Nhập:
+    <input type="text" name="usename" value="">
+    </p>
+</div>
+<div>
+    <p>Mật Khẩu: 
+    <input type="password" name="password" value="">
+    </p>
+    <div>
+        <p>
+            Email:
+            <input type="email" name="email" value="">
+        </p>
+    </div>
+    <p>Họ Tên:
+        <input type="text" name="hoten" value="">
+    </p>
+    <input type="submit" name="btnSubmit" id="them moi">
+   </div>
+    </form>
+
 
 </body>
 </html>
